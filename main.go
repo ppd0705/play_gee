@@ -3,16 +3,15 @@ package main
 import (
 	"fmt"
 	"gee"
-	"net/http"
 )
 
-func indexHandler(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "URL.Path = %q\n", req.URL.Path)
+func indexHandler(c *gee.Context) {
+	fmt.Fprintf(c.Writer, "URL.Path = %q\n", c.Req.URL.Path)
 }
 
-func helloHandler(w http.ResponseWriter, req *http.Request) {
-	for k, v := range req.Header {
-		fmt.Fprintf(w, "Header[%q] = %q\n", k, v)
+func helloHandler(c *gee.Context) {
+	for k, v := range c.Req.Header {
+		fmt.Fprintf(c.Writer, "Header[%q] = %q\n", k, v)
 	}
 }
 
