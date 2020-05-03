@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gee"
+	"net/http"
 )
 
 func indexHandler(c *gee.Context) {
@@ -20,6 +21,14 @@ func main() {
 
 	r.GET("/", indexHandler)
 	r.GET("/hello", helloHandler)
+
+	r.GET("/hello/:name", func(c *gee.Context) {
+		c.String(http.StatusOK, "hello %s, you are at %s\n", c.Params["name"], c.Path)
+	})
+
+	r.GET("/assets/*filepath", func(c *gee.Context) {
+		c.Json(http.StatusOK, gee.H{"filepath": c.Params["filepath"]})
+	})
 
 	r.Run(":9999")
 }
