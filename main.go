@@ -19,6 +19,7 @@ func helloHandler(c *gee.Context) {
 func main() {
 	r := gee.New()
 
+	r.Use(gee.Logger())
 	r.GET("/", indexHandler)
 	r.GET("/hello", helloHandler)
 
