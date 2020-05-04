@@ -10,7 +10,7 @@ gee - a toy framework like gin
 - 使用Trie树实现动态路由解析
 - 支持`:name`和`*param`正则
 #### day4
-
+- 实现路由分组控制
 #### day5
 
 #### day6
