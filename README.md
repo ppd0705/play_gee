@@ -16,3 +16,4 @@ gee - a toy framework like gin
 #### day6
 - 实现HTML模板
 #### day7
+- 实现错误恢复

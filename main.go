@@ -19,6 +19,7 @@ func helloHandler(c *gee.Context) {
 func main() {
 	r := gee.New()
 
+	r.Use(gee.Recovery())
 	r.Use(gee.Logger())
 	r.GET("/", indexHandler)
 	r.GET("/hello", helloHandler)
@@ -31,5 +32,9 @@ func main() {
 		c.Json(http.StatusOK, gee.H{"filepath": c.Params["filepath"]})
 	})
 
+	r.GET("/panic", func(c *gee.Context) {
+		names := []string{"aaa", "bbb", "cccc"}
+		c.String(http.StatusOK, names[101])
+	})
 	r.Run(":9999")
 }
